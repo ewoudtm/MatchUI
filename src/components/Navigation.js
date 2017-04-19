@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem'
 import { Link } from 'react-router'
 import signOut from '../actions/user/sign-out'
 import FlatButton from 'material-ui/FlatButton'
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { history } from '../store'
 
 
@@ -47,20 +48,27 @@ import {
         <AppBar
           className="navbar"
           title="Match"
-            iconElementLeft={<h1><FlatButton label="&" onClick={this.toggleMenu.bind(this)}/></h1>}
+            onLeftIconButtonTouchTap={this.toggleMenu.bind(this)}
             iconElementRight={signedIn ?
             <FlatButton label="Sign out" onClick={this.signOut.bind(this)} /> :
             <FlatButton label="Sign up" onClick={this.signUp} />
           }
         />
         <Drawer open={this.state.open}>
-          <div style={{ paddingTop: 80 }}>
-            <Link to={ROOT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
-              <MenuItem>Lobby</MenuItem>
-            </Link>
-            <Link to={CHAT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
-              <MenuItem>Chat</MenuItem>
-            </Link>
+          <div>
+            <div>
+              <Link to={ROOT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
+                <MenuItem>Close</MenuItem>
+              </Link>
+            </div>
+            <div style={{ paddingTop: 80 }}>
+              <Link to={ROOT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
+                <MenuItem>Lobby</MenuItem>
+              </Link>
+              <Link to={CHAT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
+                <MenuItem>Chat</MenuItem>
+              </Link>
+            </div>
           </div>
         </Drawer>
       </div>
@@ -69,7 +77,7 @@ import {
 }
 
 const mapStateToProps = ({ currentUser }) => ({
-  signedIn: (!!currentUser && !!currentUser._id)
+  signedIn: (!!currentUser && !!currentUser._id), currentUser
 })
 
 export default connect(mapStateToProps, { signOut })(Navigation)
