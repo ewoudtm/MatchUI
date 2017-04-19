@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
+import Checkbox from 'material-ui/Checkbox'
 import RaisedButton from 'material-ui/RaisedButton'
 import signUp from '../actions/user/sign-up'
 
@@ -18,11 +19,13 @@ class SignUp extends PureComponent {
       const user = {
         name: this.refs.name.getValue(),
         email: this.refs.email.getValue(),
-        password: this.refs.password.getValue()
+        password: this.refs.password.getValue(),
+        // student: this.refs.student.getValue()
       }
       this.props.signUp(user)
     }
   }
+
 
   validateAll() {
     return this.validateName() &&
@@ -118,6 +121,7 @@ class SignUp extends PureComponent {
         <TextField fullWidth={true} ref="email" onChange={this.validateEmail.bind(this)} hintText="Your email address" errorText={this.state.emailError} />
         <TextField fullWidth={true} ref="password" type="password" onChange={this.validatePassword.bind(this)} hintText="Your password" errorText={this.state.passwordError} />
         <TextField fullWidth={true} ref="passwordConfirmation" type="password" onChange={this.validatePasswordConfirmation.bind(this)} hintText="Your password, again" errorText={this.state.passwordConfirmationError} />
+        <Checkbox label="Student" ref="student" defaultChecked={true} style={{ marginBottom: 16 }}/>
 
         <div style={{ margin: '24px 0 0', textAlign: 'right' }}>
         <Link to={'/users/sign-in'}>
