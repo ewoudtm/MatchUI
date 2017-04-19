@@ -1,5 +1,6 @@
 import API from '../../lib/api'
 import { history } from '../../store'
+import { ADMIN_PATH, STUDENT_PATH } from '../../routes'
 
 export const USER_SIGNED_IN = 'USER_SIGNED_IN'
 const api = new API()
@@ -12,6 +13,7 @@ export default (user) => {
     .then((result) => {
       console.log('user successfully logged in')
       dispatch(signedInUser(result))
+
       history.push('/')
     })
     .catch((error) => {

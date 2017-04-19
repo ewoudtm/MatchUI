@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import subscribeGames from '../actions/games/subscribe'
+import subscribeStudents from '../actions/students/subscribe'
 import rollDie from '../actions/games/roll-die'
 import cash from '../actions/games/cash'
 import './StudentPage.sass'
@@ -9,23 +9,11 @@ class StudentPage extends PureComponent {
   static propTypes = {}
 
   componentDidMount() {
-    this.props.subscribeGames()
-  }
-
-  renderRollDieButton(gameId) {
-    return <button className='die' onTouchTap={() => {this.props.rollDie(gameId)}}>
-      Roll die
-    </button>
-  }
-
-  renderCashButton(gameId) {
-    return <button className='die' onTouchTap={() => {this.props.cash(gameId)}}>
-      Cash
-    </button>
+    this.props.subscribeStudents()
   }
 
   render() {
-    const { _id, title, players, dieRoll, cash } = this.props
+    const { _id, title, players } = this.props
     const player1 = players[0]
     const player2 = players[1]
     console.log(_id)
@@ -65,17 +53,17 @@ class StudentPage extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ games }, { params }) => {
-  const game = games.reduce((prev, next) => {
-    if (next._id === params.gameId) {
+const mapStateToProps = ({ students }, { params }, { lessons }) => {
+  const student = students.reduce((prev, next) => {
+    if (next._id === params.studentId) {
       return next
     }
     return prev
   }, {})
 
   return {
-    ...game
+    ...student
   }
 }
 
-export default connect(mapStateToProps, {subscribeGames, rollDie, cash})(StudentPage)
+export default connect(mapStateToProps, {subscribeStudents, rollDie, cash})(StudentPage)
