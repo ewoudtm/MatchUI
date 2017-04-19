@@ -16,7 +16,7 @@ const pink         = '#ff69b4'
 
 // Palette
 export const palette = {
-  primary1Color: pink,
+  primary1Color: red,
   primary2Color: green,
   primary3Color: green,
   accent1Color: green,

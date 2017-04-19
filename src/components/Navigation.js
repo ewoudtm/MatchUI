@@ -4,7 +4,6 @@ import Drawer from 'material-ui/Drawer'
 import { connect } from 'react-redux'
 import MenuItem from 'material-ui/MenuItem'
 import { Link } from 'react-router'
-import Logo from '../images/piggy.gif'
 import signOut from '../actions/user/sign-out'
 import FlatButton from 'material-ui/FlatButton'
 import { history } from '../store'
@@ -47,8 +46,8 @@ import {
       <div>
         <AppBar
           className="navbar"
-          title="Piggggggggyyyyyyy!!!!!!!!!!!!!"
-            iconElementLeft={<img src={ Logo } onClick={this.toggleMenu.bind(this)}/>}
+          title="Match"
+            iconElementLeft={<h1><FlatButton label="&" onClick={this.toggleMenu.bind(this)}/></h1>}
             iconElementRight={signedIn ?
             <FlatButton label="Sign out" onClick={this.signOut.bind(this)} /> :
             <FlatButton label="Sign up" onClick={this.signUp} />
@@ -57,7 +56,7 @@ import {
         <Drawer open={this.state.open}>
           <div style={{ paddingTop: 80 }}>
             <Link to={ROOT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
-              <MenuItem>Game Lobby</MenuItem>
+              <MenuItem>Lobby</MenuItem>
             </Link>
             <Link to={CHAT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
               <MenuItem>Chat</MenuItem>

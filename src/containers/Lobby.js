@@ -30,7 +30,7 @@ class Lobby extends PureComponent {
   render() {
     return (
       <div className="games lobby">
-        <h1>Games Lobby</h1>
+        <h1>Lobby</h1>
 
         { this.props.games.length === 0 ?
 
@@ -52,7 +52,7 @@ class Lobby extends PureComponent {
                       zDepth={1}>
                       <h4>{game.title}</h4>
                         <Link to={`/games/${game._id}`}>
-                          <RaisedButton label="Go to Game" secondary={true}/>
+                          <RaisedButton label="Go to Student" secondary={true}/>
                         </Link>
                           <div className="actions">
                             {game.players.length < 2 && this.renderJoinGameButton(game._id) }
