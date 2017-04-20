@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem'
 import { Link } from 'react-router'
 import signOut from '../actions/user/sign-out'
 import FlatButton from 'material-ui/FlatButton'
+import Divider from 'material-ui/Divider';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { history } from '../store'
 
@@ -13,6 +14,8 @@ import { history } from '../store'
 import {
   ROOT_PATH,
   CHAT_PATH,
+  STUDENT_PATH,
+  ADMIN_PATH,
 } from '../routes'
 
  class Navigation extends PureComponent {
@@ -56,14 +59,25 @@ import {
         />
         <Drawer open={this.state.open}>
           <div>
-            <div>
+            <div style={{ paddingTop: 20 }}>
+              <MenuItem onTouchTap={this.toggleMenu.bind(this)}>Close</MenuItem>
+            </div>
+            <Divider />
+            <div style={{ paddingTop: 40 }}>
               <Link to={ROOT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
-                <MenuItem>Close</MenuItem>
+                <MenuItem>Home</MenuItem>
               </Link>
             </div>
-            <div style={{ paddingTop: 80 }}>
+            <Divider />
+            <div style={{ paddingTop: 30 }}>
               <Link to={ROOT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
                 <MenuItem>Lobby</MenuItem>
+              </Link>
+              <Link to={ADMIN_PATH} onTouchTap={this.toggleMenu.bind(this)}>
+                <MenuItem>Admin</MenuItem>
+              </Link>
+              <Link to={STUDENT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
+                <MenuItem>Student</MenuItem>
               </Link>
               <Link to={CHAT_PATH} onTouchTap={this.toggleMenu.bind(this)}>
                 <MenuItem>Chat</MenuItem>
