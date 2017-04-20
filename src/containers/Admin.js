@@ -9,6 +9,10 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 import Avatar from 'material-ui/Avatar'
 import Checkbox from 'material-ui/Checkbox'
 import subscribeToUsers from '../actions/users/subscribe'
+import subscribeToLessons from '../actions/lessons/subscribe'
+import LessonDialog from '../components/LessonDialog'
+
+
 
 
 class Admin extends PureComponent {
@@ -63,27 +67,24 @@ class Admin extends PureComponent {
           <Tab label="Lessons" >
           <div>
             <h2>Lessons</h2>
+            <LessonDialog />
             <List>
-              <ListItem
-                primaryText="Todays Lesson"
-                leftAvatar={<Avatar src="../images/ic_face_black_24dp_2x.png" />}
-                  rightCheckbox={<Checkbox />}
-              />
-              <ListItem
-                primaryText="Todays Lesson"
-                leftAvatar={<Avatar src="../images/ic_face_black_24dp_2x.png" />}
-                rightCheckbox={<Checkbox />}
-              />
-              <ListItem
-                primaryText="Todays Lesson"
-                leftAvatar={<Avatar src="../images/ic_face_black_24dp_2x.png" />}
-                rightCheckbox={<Checkbox />}
-              />
-              <ListItem
-                primaryText="Todays Lesson"
-                leftAvatar={<Avatar src="../images/ic_face_black_24dp_2x.png" />}
-                rightCheckbox={<Checkbox />}
-              />
+              { this.props.lessons.map((lesson) => {
+                const isUnassigned = (lesson.teams === []) ? true : false
+                if (isUnassigned) {
+                  return (
+                    <ListItem
+                      primaryText={<i className="material-icons">people outline</i> +'  '+`${lesson.title}`}
+                      secondaryText={`${lesson.date}`}
+                    />
+                  )
+                } return (
+                    <ListItem
+                      primaryText={<i className="material-icons">people</i> +'  '+`${lesson.title}`}
+                      secondaryText={`${lesson.date}`}
+                    />
+                  )
+              })}
             </List>
           </div>
           </Tab>
@@ -94,5 +95,5 @@ class Admin extends PureComponent {
 }
 
 
-const mapStateToProps = ({ users }) => ({ users })
-export default connect(mapStateToProps, { subscribeToUsers })(Admin)
+const mapStateToProps = ({ users, lessons }) => ({ users, lessons })
+export default connect(mapStateToProps, { subscribeToUsers, subscribeToLessons })(Admin)
