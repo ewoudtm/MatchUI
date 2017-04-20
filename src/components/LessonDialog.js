@@ -37,7 +37,7 @@ class LessonDialog extends PureComponent {
 
   updateTitle = (event, title) => {
     this.setState({
-      title: title 
+      title: title
     })
   }
 
