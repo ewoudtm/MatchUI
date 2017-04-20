@@ -6,8 +6,8 @@ import MenuItem from 'material-ui/MenuItem'
 import { Link } from 'react-router'
 import signOut from '../actions/user/sign-out'
 import FlatButton from 'material-ui/FlatButton'
-import Divider from 'material-ui/Divider';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import Divider from 'material-ui/Divider'
+import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import { history } from '../store'
 
 
