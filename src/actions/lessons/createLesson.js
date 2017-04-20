@@ -6,7 +6,7 @@ export default (lesson) => {
     [CALL_API]: {
       service: 'lessons',
       method: CREATE,
-      type: 'LESSONS_CREATED',
+      type: 'LESSON_CREATED',
       authenticate: true,
       params: {
         title: lesson.title,

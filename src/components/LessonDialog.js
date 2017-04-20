@@ -23,6 +23,7 @@ class LessonDialog extends PureComponent {
       title: this.state.title,
       date: this.state.date,
     }
+    console.log('lesson submit')
     this.props.createLesson(lesson)
 
   }
