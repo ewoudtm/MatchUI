@@ -4,6 +4,7 @@ import games from './games'
 import loading from './loading'
 import messages from './messages'
 import users from './users'
+import lessons from './lessons'
 
 module.exports = {
   currentUser,
@@ -11,4 +12,5 @@ module.exports = {
   loading,
   messages,
   users,
+  lessons,
 }
