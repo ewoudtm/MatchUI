@@ -9,16 +9,26 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 import Avatar from 'material-ui/Avatar'
 import Checkbox from 'material-ui/Checkbox'
 import subscribeToUsers from '../actions/users/subscribe'
+import toggleAdmin from '../actions/users/toggleAdmin'
+import toggleStudent from '../actions/users/toggleStudent'
+import match from '../actions/lessons/match'
 import subscribeToLessons from '../actions/lessons/subscribe'
 import createLesson from '../actions/lessons/createLesson'
 import DatePicker from 'material-ui/DatePicker'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import Divider from 'material-ui/Divider'
+import ToggleButton from 'react-toggle-button'
+
 
 
 
 class Admin extends PureComponent {
+  constructor() {
+    super()
+    this.state = {}
+  }
+
   componentWillMount() {
     this.props.subscribeToUsers()
     this.props.subscribeToLessons()
@@ -47,6 +57,10 @@ class Admin extends PureComponent {
     })
   }
 
+  match(event) {
+    event.preventDefault()
+    this.props.match()
+  }
 
 
 
@@ -70,8 +84,12 @@ class Admin extends PureComponent {
                   return (
                     <TableRow>
                       <TableRowColumn>{user.name}</TableRowColumn>
-                      <TableRowColumn><Checkbox defaultChecked={user.admin}/></TableRowColumn>
-                      <TableRowColumn><Checkbox defaultChecked={user.student}/></TableRowColumn>
+                      <TableRowColumn><Checkbox defaultChecked={user.admin}
+                      onClick={() => {toggleAdmin(user._id, !user.admin)}}/>
+                      </TableRowColumn>
+                      <TableRowColumn><Checkbox defaultChecked={user.student}
+                      onClick={() => {toggleStudent(user._id, !user.student)}}/>
+                      </TableRowColumn>
                     </TableRow>
                   )})}
               </TableBody>
@@ -117,12 +135,14 @@ class Admin extends PureComponent {
                     <ListItem
                       primaryText={`${lesson.title}`}
                       secondaryText={`${lesson.date}`}
+                      rightIconButton={<RaisedButton label="Match Students" primary={true} onClick={this.match.bind(this)} />}
                     />
                   )
                 } return (
                     <ListItem
                       primaryText={`${lesson.title}`}
                       secondaryText={`${lesson.date}`}
+                      rightIconButton={<RaisedButton label="Match Students" primary={true} onClick={this.match.bind(this)} />}
                     />
                   )
               })}
@@ -137,4 +157,4 @@ class Admin extends PureComponent {
 
 
 const mapStateToProps = ({ users, lessons }) => ({ users, lessons })
-export default connect(mapStateToProps, { subscribeToUsers, subscribeToLessons, createLesson })(Admin)
+export default connect(mapStateToProps, { subscribeToUsers, subscribeToLessons, createLesson, toggleStudent, toggleAdmin, match })(Admin)
